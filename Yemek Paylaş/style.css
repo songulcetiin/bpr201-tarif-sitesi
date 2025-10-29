@@ -1,0 +1,646 @@
+/* Temel Ayarlar ve Resetleme */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+        Arial, sans-serif;
+    background-color: #F5F7FA; 
+    color: #333333; 
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Navbar (TÜM SAYFALARDA ORTAK) */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0; 
+    padding: 12px 0; 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.6rem; 
+    font-weight: bold;
+    color: #FF6B6B; 
+    text-decoration: none;
+    letter-spacing: -0.5px; 
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar nav li {
+    margin-left: 25px; 
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: #666; 
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease-in-out; 
+    padding: 5px 0;
+    position: relative;
+}
+
+.navbar nav a:hover {
+    color: #FF6B6B;
+}
+
+/* Aktif sayfa linkini belirginleştirme */
+.navbar nav a.active {
+    color: #FF6B6B; 
+}
+
+.navbar nav a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -15px; /* header'ın padding'ine göre ayarlandı */
+    width: 100%;
+    height: 3px;
+    background-color: #FF6B6B; 
+    border-radius: 2px;
+}
+
+.navbar nav a i {
+    margin-right: 6px;
+    font-size: 1.1rem; 
+}
+
+
+/* ---------------------------------- */
+/* 1. ANA AKIŞ SAYFASI (index.html)   */
+/* ---------------------------------- */
+
+/* 3 SÜTUNLU YAPI (Sadece index.html için) */
+.main-layout-container {
+    max-width: 1200px; /* Sayfanın toplam genişliği */
+    display: grid;
+    /* Sütun genişlikleri: Sol (sabit) - Orta (esnek) - Sağ (sabit) */
+    grid-template-columns: 280px 1fr 320px; 
+    gap: 30px; /* Sütunlar arası boşluk */
+    margin-top: 30px;
+    align-items: flex-start; /* Sütunların tepeden hizalanması */
+}
+
+/* Ana akışın (orta sütun) ayarları */
+.feed-container {
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
+}
+
+/* TARİF KARTLARI (feed-container içindeki) */
+.recipe-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px; 
+    margin-bottom: 25px; 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09); 
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out; 
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px); 
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #fcfcfc; 
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* AVATAR GÜNCELLEMESİ (ÇERÇEVE) */
+.avatar {
+    width: 45px; 
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+    border: 2px solid #ddd; /* Kırmızı çerçeve gri yapıldı */
+    background-color: #f0f0f0; /* Resim yüklenmezse diye */
+}
+
+.user-info { display: flex; flex-direction: column; }
+.username { font-weight: 700; color: #222222; font-size: 1.05rem; }
+.timestamp { font-size: 0.85rem; color: #888888; }
+.recipe-title { font-size: 1.4rem; padding: 15px 20px 10px 20px; color: #FF6B6B; }
+.recipe-image { width: 100%; height: auto; max-height: 500px; object-fit: cover; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; }
+.card-body { padding: 20px; }
+.recipe-description { margin-bottom: 15px; color: #444; }
+.recipe-description strong { color: #FF6B6B; }
+
+.action-buttons {
+    display: flex;
+    justify-content: space-around; 
+    gap: 10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 12px 0; 
+    margin-bottom: 15px;
+}
+
+.action-buttons button {
+    background: none; border: none; cursor: pointer; font-size: 1rem; color: #777;
+    display: flex; align-items: center; padding: 8px 15px; border-radius: 25px; 
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.action-buttons button:hover { background-color: #ffeaea; color: #FF6B6B; }
+.action-buttons button i { font-size: 1.3rem; margin-right: 8px; }
+.like-button.liked { color: #FF6B6B; }
+.like-button.liked i { color: #FF6B6B; font-weight: 900; }
+
+.comments-section { padding: 0 20px 20px 20px; }
+.comment { font-size: 0.95rem; margin-bottom: 8px; background-color: #f9f9f9; padding: 8px 12px; border-radius: 15px; }
+.comment strong { margin-right: 6px; color: #333; }
+.add-comment { display: flex; margin-top: 15px; gap: 10px; }
+.add-comment input {
+    flex-grow: 1; border: 1px solid #cccccc; border-radius: 25px; 
+    padding: 10px 15px; font-size: 0.95rem; background-color: #fdfdfd;
+    transition: border-color 0.2s;
+}
+.add-comment input:focus { outline: none; border-color: #FF6B6B; box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2); }
+.add-comment button {
+    background-color: #FF6B6B; border: none; color: #ffffff; font-weight: 600;
+    cursor: pointer; padding: 10px 20px; border-radius: 25px;
+    transition: background-color 0.2s ease-in-out;
+}
+.add-comment button:hover { background-color: #E63946; }
+
+
+/* YAN SÜTUNLAR (Sidebar) VE WIDGET'LAR (Sadece index.html için) */
+.sidebar {
+    position: sticky; 
+    top: 90px; 
+}
+
+.widget {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.widget h4 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+}
+
+/* KATEGORİ RENK GÜNCELLEMESİ */
+.categories-widget h4 i { color: #555; } 
+
+.categories-widget ul { list-style: none; }
+.categories-widget li { margin-bottom: 8px; }
+.categories-widget a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+.categories-widget a:hover {
+    background-color: #ffeaea;
+    color: #FF6B6B;
+}
+.categories-widget a:hover i {
+    color: #FF6B6B;
+}
+.categories-widget a i {
+    margin-right: 12px;
+    font-size: 1.1rem;
+    width: 20px; 
+    text-align: center;
+    color: #777; 
+    transition: color 0.2s;
+}
+
+/* Kaydedilenler Widget'ı */
+.saved-widget h4 i { color: #5a96ff; } 
+.saved-widget p { font-size: 0.9rem; color: #777; margin-bottom: 15px; }
+
+.widget-button {
+    display: inline-block;
+    background-color: #f0f2f5;
+    border: 1px solid #ddd;
+    color: #333;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.widget-button:hover { background-color: #e4e6e9; }
+
+
+/* SAĞ SİDEBAR (Öneriler vs.) */
+.suggested-user {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    margin-bottom: 15px;
+}
+.suggested-user img { 
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    background-color: #f0f0f0;
+}
+.user-details { flex-grow: 1; }
+.user-details strong { display: block; font-size: 0.95rem; font-weight: 600; color: #333; }
+.user-details span { font-size: 0.85rem; color: #888; }
+
+.follow-button {
+    background-color: #FF6B6B;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.follow-button:hover { background-color: #E63946; }
+
+/* Günün Tarifi Widget'ı */
+.recipe-of-the-day-widget h4 i { color: #ffc107; } 
+.recipe-of-the-day-widget img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    aspect-ratio: 16 / 9; 
+    object-fit: cover;
+}
+.recipe-of-the-day-widget strong { font-size: 1.05rem; color: #FF6B6B; margin-bottom: 5px; display: block; }
+.recipe-of-the-day-widget p { font-size: 0.9rem; color: #777; }
+
+
+/* -------------------------------------- */
+/* 2. TARİF EKLEME SAYFASI (tarif-ekle.html) */
+/* -------------------------------------- */
+
+.form-container {
+    max-width: 700px; 
+    margin: 30px auto;
+    padding: 15px;
+}
+
+.recipe-form {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px 40px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+}
+
+.recipe-form h2 {
+    text-align: center;
+    color: #FF6B6B;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.recipe-form input[type="text"],
+.recipe-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.recipe-form input[type="text"]:focus,
+.recipe-form textarea:focus {
+    outline: none;
+    border-color: #FF6B6B;
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2);
+}
+
+.recipe-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+}
+
+.form-submit-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #FF6B6B;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s;
+}
+
+.form-submit-button:hover {
+    background-color: #E63946;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+}
+
+.form-submit-button i {
+    margin-left: 8px;
+}
+
+
+/* ----------------------------------- */
+/* 3. PROFİL SAYFASI (profil.html)     */
+/* ----------------------------------- */
+
+.profile-container {
+    max-width: 960px; 
+    margin: 30px auto;
+    padding: 15px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+    margin-bottom: 30px;
+}
+
+/* PROFİL AVATAR GÜNCELLEMESİ (ÇERÇEVE) */
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ddd; /* Kırmızı çerçeve gri yapıldı */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Kırmızı gölge yumuşatıldı */
+    background-color: #f0f0f0;
+}
+
+.profile-info h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-bio {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.profile-stats div {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.profile-stats span {
+    font-weight: 700;
+    color: #333;
+    display: block; /* Sayıyı üste al */
+    font-size: 1.4rem;
+}
+
+.edit-profile-button {
+    background-color: #f0f2f5;
+    border: 1px solid #ddd;
+    color: #333;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.edit-profile-button:hover {
+    background-color: #e4e6e9;
+}
+
+.profile-grid-container {
+    padding: 0 10px;
+}
+
+.profile-grid-container h3 {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.recipe-grid {
+    display: grid;
+    /* 3 sütunlu bir grid, her biri eşit genişlikte */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* Resimler arası boşluk */
+}
+
+.grid-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1; 
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover img {
+    transform: scale(1.05); /* Üzerine gelince hafif büyütme */
+}
+
+.grid-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+    color: #ffffff;
+    display: flex;
+    align-items: flex-end; /* Yazıyı alta yasla */
+    justify-content: center;
+    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0; /* Normalde görünmez */
+    transition: opacity 0.3s ease;
+}
+
+.grid-item:hover .overlay {
+    opacity: 1; /* Üzerine gelince görünür yap */
+}
+
+.grid-item .overlay i {
+    margin-right: 8px;
+    color: #FF6B6B;
+}
+
+/* ================================== */
+/* YENİ EKLENEN BÖLÜM: DUYARLI TASARIM */
+/* ================================== */
+
+/* Orta Boy Ekranlar (Tabletler ve Küçük Laptoplar) - Sağ Sidebar'ı Gizle */
+/* 1200px'den küçük ekranlarda */
+@media (max-width: 1200px) {
+    .right-sidebar {
+        display: none; /* Sağ sidebar'ı gizle */
+    }
+
+    .main-layout-container {
+        /* Sütunları 2'ye düşür: Sol + Orta */
+        grid-template-columns: 280px 1fr;
+        /* Genişliği 960px'e çekerek Navbar ile hizala */
+        max-width: 960px;
+    }
+}
+
+/* Küçük Ekranlar (Dikey Tabletler) - Sol Sidebar'ı da Gizle */
+/* 768px'den küçük ekranlarda */
+@media (max-width: 768px) {
+    .left-sidebar {
+        display: none; /* Sol sidebar'ı da gizle */
+    }
+
+    .main-layout-container {
+        /* Sütunları 1'e düşür: Sadece Orta */
+        grid-template-columns: 1fr;
+        /* Kenar boşluklarını ayarla */
+        padding: 0 10px;
+        margin-top: 20px;
+    }
+
+    /* Ana akışın (orta sütun) sabit üst boşluğunu kaldır */
+    .sidebar {
+        position: static; /* sticky özelliğini kaldır */
+    }
+    
+    /* Profil sayfasındaki 3'lü grid'i 2'li yap */
+    .recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Navbar'daki menüyü (listeyi) gizle (Mobil menü için hazırlık) */
+    .navbar nav ul {
+        /* Bu demoda menüyü tamamen gizliyoruz. */
+        /* Gerçek bir uygulamada buraya bir hamburger menü ikonu gelir. */
+        display: none;
+    }
+}
+
+/* En Küçük Ekranlar (Mobil Telefonlar) */
+/* 480px'den küçük ekranlarda */
+@media (max-width: 480px) {
+    .container,
+    .main-layout-container {
+        padding: 0 10px; /* Kenar boşluklarını azalt */
+    }
+    
+    .navbar .container {
+        padding: 0 15px;
+    }
+
+    /* Kartların iç boşluklarını azalt */
+    .card-body,
+    .card-header,
+    .comments-section {
+        padding: 15px;
+    }
+    
+    .recipe-title {
+        padding: 10px 15px;
+        font-size: 1.2rem;
+    }
+    
+    /* Tarif Ekleme Formunu ayarla */
+    .recipe-form {
+        padding: 20px 15px;
+    }
+    
+    /* Profil Sayfasını ayarla */
+    .profile-header {
+        flex-direction: column; /* Profil resmini ve bilgiyi alt alta getir */
+        text-align: center;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .profile-stats {
+        justify-content: center; /* İstatistikleri ortala */
+    }
+    
+    .recipe-grid {
+        /* Profildeki 2'li grid'i tekli yap */
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}

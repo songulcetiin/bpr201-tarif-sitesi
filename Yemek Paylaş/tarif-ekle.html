@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Tarif Ekle - YemekPaylaş</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">YemekPaylaş 🍜</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Ana Akış</a></li>
+                    <li><a href="tarif-ekle.html" class="active"><i class="fas fa-plus-circle"></i> Tarif Ekle</a></li>
+                    <li><a href="profil.html"><i class="fas fa-user"></i> Profilim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="form-container">
+        <form class="recipe-form">
+            <h2>Yeni Tarifini Paylaş</h2>
+            
+            <div class="form-group">
+                <label for="recipe-title">Tarif Başlığı</label>
+                <input type="text" id="recipe-title" placeholder="Örn: Nefis Mercimek Çorbası">
+            </div>
+
+            <div class="form-group">
+                <label for="recipe-description">Açıklama</label>
+                <textarea id="recipe-description" rows="4" placeholder="Tarifin hakkında kısa bir açıklama..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="recipe-image">Tarif Fotoğrafı</label>
+                <input type="file" id="recipe-image" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="recipe-ingredients">Malzemeler</label>
+                <textarea id="recipe-ingredients" rows="8" placeholder="Her malzemeyi yeni bir satıra yazın..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="recipe-instructions">Hazırlanışı</label>
+                <textarea id="recipe-instructions" rows="10" placeholder="Adım adım tarifin hazırlanışını anlatın..."></textarea>
+            </div>
+            
+            <button type="submit" class="form-submit-button">
+                Tarifi Paylaş <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+    </main>
+
+</body>
+</html>
